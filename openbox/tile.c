@@ -23,11 +23,11 @@ void tile_windows() {
   ObClient *cl_ = NULL;
   size_t irregular_windows = 0;
   for (it = client_list; it && it->data; it = g_list_next(it)) {
-    ObClient * cl = it->data;
+    ObClient *cl = it->data;
     if (cl->type == OB_CLIENT_TYPE_NORMAL && cl->desktop == screen_desktop)
       cl_ = it->data;
     else
-     ++irregular_windows;
+      ++irregular_windows;
   }
   if (cl_ == NULL)
     return;
@@ -38,8 +38,9 @@ void tile_windows() {
   }
   client_maximize(cl_, FALSE, 0);
   const Rect *screen = screen_physical_area_primary(FALSE);
-  client_move_resize(cl_, 0, 0, screen->width >> 1, screen->height);
-    size_t i = 0;
+  client_move_resize(cl_, 0, 0, (screen->width >> 1) - cl_->frame->size.left,
+                     screen->height - cl_->frame->size.top);
+  size_t i = 0;
   for (it = client_list; it && it->data; it = g_list_next(it)) {
     ObClient *cl = it->data;
     if (cl == cl_ || cl->type != OB_CLIENT_TYPE_NORMAL)
@@ -47,12 +48,16 @@ void tile_windows() {
     ++i;
     // Now we know we have a stack window.
     if ((ll - irregular_windows) == 2) {
-      client_move_resize(cl, screen->width >> 1, 0, screen->width >> 1,
-                         screen->height);
+      client_move_resize(cl, screen->width >> 1, 0,
+                         (screen->width >> 1) - cl->frame->size.left,
+                         screen->height - cl->frame->size.top);
     } else {
       client_move_resize(cl, screen->width >> 1,
-                         screen->height * ((i - 1) / (float)(ll - 1 - irregular_windows)),
-                         screen->width >> 1, screen->height / (ll - 1 - irregular_windows));
+                         screen->height *
+                             ((i - 1) / (float)(ll - 1 - irregular_windows)),
+                         (screen->width >> 1) - cl->frame->size.left,
+                         (screen->height / (ll - 1 - irregular_windows)) -
+                             cl->frame->size.top);
     }
   }
 }
