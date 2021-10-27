@@ -724,7 +724,8 @@ void client_unmanage(ObClient *self) {
   g_slice_free(ObClient, self);
 
   // retile windows
-  tile_windows();
+  if (layout == LAYOUT_TILING)
+    tile_windows();
 }
 
 void client_fake_unmanage(ObClient *self) {
