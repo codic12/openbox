@@ -235,6 +235,7 @@ openbox_openbox_SOURCES = \
 	openbox/actions/showdesktop.c \
 	openbox/actions/showmenu.c \
 	openbox/actions/unfocus.c \
+	openbox/actions/togglelayout.c \
 	openbox/actions.c \
 	openbox/actions.h \
 	openbox/client.c \
@@ -309,7 +310,8 @@ openbox_openbox_SOURCES = \
 	openbox/translate.c \
 	openbox/translate.h \
 	openbox/window.c \
-	openbox/window.h
+	openbox/window.h \
+	openbox/tile.c
 
 ## obt_unittests ##
 

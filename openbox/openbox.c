@@ -42,6 +42,7 @@
 #include "config.h"
 #include "ping.h"
 #include "prompt.h"
+#include "tile.h"
 #include "gettext.h"
 #include "obrender/render.h"
 #include "obrender/theme.h"
@@ -187,6 +188,8 @@ gint main(gint argc, gchar **argv)
     ob_rr_icons = RrImageCacheNew(3);
 
     XSynchronize(obt_display, xsync);
+
+    layout = LAYOUT_FLOATING; /* set the default layout to floating */
 
     /* check for locale support */
     if (!XSupportsLocale())

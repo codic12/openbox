@@ -1,0 +1,9 @@
+openbox/place.c:            *w = screen->width * settings->width_num / settings->width_denom;
+openbox/place.c:            *w = MIN(*w, screen->width);
+openbox/place.c:            *h = screen->height * settings->height_num / settings->height_denom;
+openbox/place.c:            *h = MIN(*h, screen->height);
+openbox/config.h:/*! The font for on-screen-displays/popups' active text */
+openbox/config.h:/*! The font for on-screen-displays/popups' inactive text */
+obrender/theme.c:    /* read appearances for non-decorations (on-screen-display) */
+CHANGELOG:  * Fixed onscreen-keeping code which broke a bit in -rc2.
+CHANGELOG:  * Yet more poking at the onscreen-keeping code, should now do the right

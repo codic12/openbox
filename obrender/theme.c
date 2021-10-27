@@ -1471,7 +1471,6 @@ static void read_button_styles(XrmDatabase db, const RrInstance *inst,
 {
     gchar name[128], name2[128];
     gboolean userdef = TRUE;
-
     g_snprintf(name, 128, "%s.xbm", btnname);
     if (!read_mask(inst, path, name, &btn->unpressed_mask) && normal_mask)
     {

@@ -1357,7 +1357,7 @@ typedef struct {
     } \
 }
 
-static void get_xinerama_screens(Rect **xin_areas, guint *nxin)
+void get_xinerama_screens(Rect **xin_areas, guint *nxin)
 {
     guint i;
     gint l, r, t, b;
