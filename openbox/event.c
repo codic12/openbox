@@ -43,6 +43,7 @@
 #include "obt/xqueue.h"
 #include "obt/prop.h"
 #include "obt/keyboard.h"
+#include "tile.h"
 
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
@@ -450,6 +451,8 @@ static void print_focusevent(XEvent *e)
 
 static void event_process(const XEvent *ec, gpointer data)
 {
+    if (layout == LAYOUT_TILING) // i'm lazy and don't want to do this everywhere
+        tile_windows();
     XEvent ee, *e;
     Window window;
     ObClient *client = NULL;

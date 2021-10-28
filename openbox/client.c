@@ -522,9 +522,6 @@ void client_manage(Window window, ObPrompt *prompt) {
 
   ob_debug("Managed window 0x%lx plate 0x%x (%s)", window, self->frame->window,
            self->class);
-
-  if (layout == LAYOUT_TILING)
-    tile_windows();
   /* finally animate the new window; currently not in use
   size_t cfw = 1, cfh = 1; // current frame width and height
   while (!(cfw >= self->frame->area.width && cfh >= self->frame->area.height)) {
@@ -722,10 +719,6 @@ void client_unmanage(ObClient *self) {
   g_free(self->client_machine);
   g_free(self->sm_client_id);
   g_slice_free(ObClient, self);
-
-  // retile windows
-  if (layout == LAYOUT_TILING)
-    tile_windows();
 }
 
 void client_fake_unmanage(ObClient *self) {
