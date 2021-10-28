@@ -33,21 +33,22 @@ void tile_windows() {
     return;
   // Retrieve the screen size.
   if ((ll - irregular_windows) == 1) {
-    printf("Maximizing a window\n");
     client_maximize(cl_, TRUE, 0);
     return; // lol
   }
-  printf("Making a client NOT maximized\n");
   const Rect *screen = screen_physical_area_primary(FALSE);
   client_move_resize(cl_, 0, 0, (screen->width >> 1) - cl_->frame->size.left,
                      screen->height - cl_->frame->size.top);
   size_t i = 0;
   for (it = client_list; it && it->data; it = g_list_next(it)) {
     ObClient *cl = it->data;
-    client_maximize(cl, FALSE, 0);
-    if (cl == cl_ || cl->type != OB_CLIENT_TYPE_NORMAL || cl->desktop != screen_desktop) {
+    if (cl == cl_ || cl->type != OB_CLIENT_TYPE_NORMAL) {
+      client_maximize(cl, FALSE, 0);
       continue;
     }
+    if (cl->desktop != screen_desktop)
+      continue; // no maximize
+    client_maximize(cl, FALSE, 0);
     ++i;
     // Now we know we have a stack window.
     if ((ll - irregular_windows) == 2) {
