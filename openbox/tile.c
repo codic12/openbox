@@ -45,7 +45,7 @@ void tile_windows() {
   for (it = client_list; it && it->data; it = g_list_next(it)) {
     ObClient *cl = it->data;
     client_maximize(cl, FALSE, 0);
-    if (cl == cl_ || cl->type != OB_CLIENT_TYPE_NORMAL) {
+    if (cl == cl_ || cl->type != OB_CLIENT_TYPE_NORMAL || cl->desktop != screen_desktop) {
       continue;
     }
     ++i;
