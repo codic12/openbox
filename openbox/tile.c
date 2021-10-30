@@ -66,7 +66,7 @@ void tile_windows() {
           screen->height * ((i - 1) / (float)(ll - 1 - irregular_windows)) +
               config_margins.top,
           (screen->width >> 1) - cl->frame->size.left,
-          ((screen->height - config_margins.top - config_margins.bottom) / (ll - 1 - irregular_windows)) - cl->frame->size.top);
+          ((screen->height - config_margins.top - config_margins.bottom - ((ll - 1 - irregular_windows )* cl->frame->size.top)) / (ll - 1 - irregular_windows)));
     }
   }
 }
